@@ -49,11 +49,10 @@ public class CustomerController {
     }
 
 
-
     @PostMapping("remove")
     @Operation(summary = "删除客户信息")
-    public Result removeCustomer(@RequestBody List<Integer> ids){
-        if(ids.isEmpty()){
+    public Result removeCustomer(@RequestBody List<Integer> ids) {
+        if (ids.isEmpty()) {
             throw new ServerException("请选择要删除的客户信息");
         }
         customerService.removeCustomer(ids);
@@ -72,6 +71,14 @@ public class CustomerController {
     @Operation(summary = "转为公海客户")
     public Result customerToPublicPool(@RequestBody @Validated IdQuery idQuery) {
         customerService.customerToPublicPool(idQuery);
+        return Result.ok();
+    }
+
+
+    @PostMapping("toPrivate")
+    @Operation(summary = "领取客户")
+    public Result publicPoolToPrivate(@RequestBody @Validated IdQuery idQuery) {
+        customerService.publicPoolToPrivate(idQuery);
         return Result.ok();
     }
 }
