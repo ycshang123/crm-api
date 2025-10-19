@@ -61,7 +61,7 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> i
             convertCustomer.setOwnerId(managerId);
             baseMapper.insert(convertCustomer);
         } else {
-            wrapper.ne(Customer::getPhone, customerVO.getPhone());
+            wrapper.ne(Customer::getId, customerVO.getId());
             Customer customer = baseMapper.selectOne(wrapper);
             if (customer != null) {
                 throw new ServerException("该手机号客户已经存在，请勿重复添加客户信息");
