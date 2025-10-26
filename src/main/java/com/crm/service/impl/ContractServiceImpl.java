@@ -105,7 +105,6 @@ public class ContractServiceImpl extends ServiceImpl<ContractMapper, Contract> i
         }
 
         // 处理合同商品明细
-        System.out.println("处理合同商品明细"+contractVO.getProducts().size());
         handleContractProducts(contract.getId(), contractVO.getProducts());
 
     }
@@ -122,7 +121,6 @@ public class ContractServiceImpl extends ServiceImpl<ContractMapper, Contract> i
                 .filter(np -> oldProducts.stream().noneMatch(op -> op.getPId().equals(np.getPId())))
                 .toList();
         for (ProductVO p : newAdded) {
-            System.out.println("新增商品：" + p.getPName() + p.getPId());
             Product product = checkAndGetProduct(p.getPId(), p.getCount());
             decreaseStock(product, p.getCount());
             ContractProduct cp = buildContractProduct(contractId, product, p.getCount());
@@ -176,11 +174,13 @@ public class ContractServiceImpl extends ServiceImpl<ContractMapper, Contract> i
 
     private void decreaseStock(Product product, int count) {
         product.setStock(product.getStock() - count);
+        product.setSales(product.getSales() + count);
         productMapper.updateById(product);
     }
 
     private void increaseStock(Product product, int count) {
         product.setStock(product.getStock() + count);
+        product.setSales(product.getSales() - count);
         productMapper.updateById(product);
     }
 

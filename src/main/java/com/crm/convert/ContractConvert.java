@@ -13,11 +13,7 @@ import java.util.List;
 public interface ContractConvert {
     ContractConvert INSTANCE = Mappers.getMapper(ContractConvert.class);
 
-    ContractVO toContractVO(Contract contract);
-
     Contract toContract(ContractVO contractVO);
-
-    List<ContractVO> toContractVOList(List<Contract> contractList);
 
     ProductVO toProductVO(ContractProduct product);
 
