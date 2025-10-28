@@ -9,6 +9,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,8 +40,8 @@ public class ContractVO {
 
     @ApiModelProperty("签约时间")
     @NotNull(message = "合同签约时间不能为空")
-    @JsonFormat(pattern = DateUtils.DATE_TIME_PATTERN)
-    private LocalDateTime signTime;
+    @JsonFormat(pattern = DateUtils.DATE_PATTERN)
+    private LocalDate signTime;
 
     @ApiModelProperty("客户id")
     private Integer customerId;
@@ -71,13 +72,13 @@ public class ContractVO {
 
     @ApiModelProperty("合同开始时间")
     @NotNull(message = "合同开始时间不能为空")
-    @JsonFormat(pattern = DateUtils.DATE_TIME_PATTERN)
-    private LocalDateTime startTime;
+    @JsonFormat(pattern = DateUtils.DATE_PATTERN)
+    private LocalDate startTime;
 
     @ApiModelProperty("合同结束时间")
     @NotNull(message = "合同结束时间不能为空")
-    @JsonFormat(pattern = DateUtils.DATE_TIME_PATTERN)
-    private LocalDateTime endTime;
+    @JsonFormat(pattern = DateUtils.DATE_PATTERN)
+    private LocalDate endTime;
 
     List<ProductVO> products;
 }

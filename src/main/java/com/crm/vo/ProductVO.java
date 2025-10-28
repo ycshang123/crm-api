@@ -17,6 +17,8 @@ public class ProductVO {
     private Integer pId;
     @JsonProperty("pName")
     private String pName;
+    @JsonProperty("totalPrice")
+    private BigDecimal totalPrice;
     private Integer count;
     private BigDecimal price;
 }
